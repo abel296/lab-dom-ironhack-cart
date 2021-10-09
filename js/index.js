@@ -27,13 +27,16 @@ function calculateAll() {
   // ITERATION 2
   //... your code goes here
 
+  let total = 0
   const products = document.querySelectorAll('.product')
   products.forEach(elm => {
-    updateSubtotal(elm)
+    total += parseFloat(updateSubtotal(elm))
   })
 
   // ITERATION 3
   //... your code goes here
+  const totalBtnSpan = document.querySelector('#total-value span')
+  totalBtnSpan.innerText = total
 }
 
 // ITERATION 4
