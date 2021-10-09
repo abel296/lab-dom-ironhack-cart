@@ -45,6 +45,9 @@ function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
   //... your code goes here
+  const productSubtotal = parseFloat(target.parentNode.parentNode.querySelector('.subtotal span').innerHTML)
+  document.querySelector('#total-value span').innerText -= productSubtotal
+  document.querySelector('tbody').removeChild(target.parentNode.parentNode)
 }
 
 // ITERATION 5
@@ -58,4 +61,6 @@ window.addEventListener('load', () => {
   calculatePricesBtn.addEventListener('click', calculateAll);
 
   //... your code goes here
+  const removeBtnsArray = document.querySelectorAll('.btn-remove')
+  removeBtnsArray.forEach(elm => elm.onclick = event => removeProduct(event))
 });
