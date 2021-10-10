@@ -54,6 +54,46 @@ function removeProduct(event) {
 
 function createProduct() {
   //... your code goes here
+  const newProductName = document.querySelectorAll('.create-product input')[0].value
+  const newProductPrice = document.querySelectorAll('.create-product input')[1].value
+
+  const newProductRow = `<td class="name">
+                            <span>Ironhack Rubber Duck</span>
+                          </td>
+                          <td class="price">$<span>25.00</span></td>
+                          <td class="quantity">
+                            <input type="number" value="0" min="0" placeholder="Quantity" />
+                          </td>
+                          <td class="subtotal">$<span>0</span></td>
+                          <td class="action">
+                            <button class="btn btn-remove">Remove</button>
+                         </td>`
+
+  const newProduct = document.createElement('tr')
+
+  newProduct.classList.add('product')
+  newProduct.innerHTML = newProductRow
+
+  newProduct.querySelector('.name span').innerText = newProductName
+  newProduct.querySelector('.price span').innerText = parseNewPrice() 
+
+  function parseNewPrice() {
+    newProductPrice.length === 1 ? newParsedPrice = `0${ newProductPrice }` : newParsedPrice = newProductPrice
+    return parseFloat(newParsedPrice).toFixed(2)
+  }
+
+  document.querySelector('tbody').appendChild(newProduct)
+
+  const removeBtnNewProduct = newProduct.querySelector('.btn-remove')
+  removeBtnNewProduct.onclick = () => {
+    const subtotalNewProduct = parseFloat(newProduct.querySelector('.subtotal span').innerHTML)
+    document.querySelector('#total-value span').innerText -= subtotalNewProduct
+    document.querySelector('tbody').removeChild(newProduct)
+  }
+  
+  document.querySelectorAll('.create-product input')[0].value = ""
+  document.querySelectorAll('.create-product input')[1].value = "0"
+  
 }
 
 window.addEventListener('load', () => {
@@ -63,4 +103,7 @@ window.addEventListener('load', () => {
   //... your code goes here
   const removeBtnsArray = document.querySelectorAll('.btn-remove')
   removeBtnsArray.forEach(elm => elm.onclick = event => removeProduct(event))
+
+  const createBtn = document.querySelector('#create')
+  createBtn.onclick = () => createProduct()
 });
