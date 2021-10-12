@@ -80,17 +80,16 @@ function createProduct() {
 
   document.querySelector('tbody').appendChild(newProduct)
 
-  const removeBtnNewProduct = newProduct.querySelector('.btn-remove')
-  removeBtnNewProduct.onclick = () => {
-    const subtotalNewProduct = parseFloat(newProduct.querySelector('.subtotal span').innerHTML)
-    document.querySelector('#total-value span').innerText -= subtotalNewProduct
-    document.querySelector('tbody').removeChild(newProduct)
-  }
-  
   document.querySelectorAll('.create-product input')[0].value = ""
   document.querySelectorAll('.create-product input')[1].value = "0"
-  
+
+  const removeBtnNewProduct = newProduct.querySelector('.btn-remove')
+  removeBtnNewProduct.onclick = event => {
+    removeProduct(event)
+    calculateAll()
+  }
 }
+
 
 window.addEventListener('load', () => {
   const calculatePricesBtn = document.getElementById('calculate');
@@ -105,5 +104,7 @@ window.addEventListener('load', () => {
   })
 
   const createBtn = document.querySelector('#create')
-  createBtn.onclick = () => createProduct()
+  createBtn.onclick = () => {
+    createProduct()
+  }
 });
