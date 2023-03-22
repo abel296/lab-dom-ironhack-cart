@@ -2,6 +2,10 @@
 
 # LAB | Ironhack Cart
 
+Shopping cart done for practicing JavaScript and DOM manipulation. 
+
+[https://shopping-cart-tau-three.vercel.app](https://shopping-cart-tau-three.vercel.app)
+
 ![shopping cart](https://i.imgur.com/s2Qxc9Z.jpg)
 
 ## Introduction
